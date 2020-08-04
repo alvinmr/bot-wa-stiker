@@ -10,20 +10,20 @@ const serverOption = {
   devtools: false,
   chacheEnabled: false,
   chromiumArgs: ['--no-sandbox', 'disable-setuid-sandbox'],
-  // executablePath: '',
-  // browserRevision: '',
+  executablePath: '',
+  browserRevision: '',
 }
 
-// const os = process.platform
-// if (os == 'win32') {
-//   serverOption['executablePath'] =
-//     'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
-// } else if (os == 'linux') {
-//   serverOption['browserRevision'] = '737027'
-// } else if (os == 'darwin') {
-//   serverOption['executablePath'] =
-//     '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-// }
+const os = process.platform
+if (os == 'win32') {
+  serverOption['executablePath'] =
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+} else if (os == 'linux') {
+  serverOption['browserRevision'] = '737027'
+} else if (os == 'darwin') {
+  serverOption['executablePath'] =
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+}
 
 create('Init', serverOption).then((client) => {
   console.log('Server Started')
