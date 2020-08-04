@@ -1,1 +1,1 @@
-worker:ts-node/src/server.ts
+worker node src/index.js
