@@ -1,4 +1,4 @@
-import { create, decryptMedia } from '@open-wa/wa-automate'
+import { create, decryptMedia, Message, Client } from '@open-wa/wa-automate'
 import * as moment from 'moment'
 
 const serverOption = {
@@ -10,18 +10,20 @@ const serverOption = {
   devtools: false,
   chacheEnabled: false,
   chromiumArgs: ['--no-sandbox', 'disable-setuid-sandbox'],
+  // executablePath: '',
+  // browserRevision: '',
 }
 
-const os = process.platform
-if (os == 'win32') {
-  serverOption['executablePath'] =
-    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
-} else if (os == 'linux') {
-  serverOption['browserRevision'] = '737027'
-} else if (os == 'darwin') {
-  serverOption['executablePath'] =
-    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-}
+// const os = process.platform
+// if (os == 'win32') {
+//   serverOption['executablePath'] =
+//     'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+// } else if (os == 'linux') {
+//   serverOption['browserRevision'] = '737027'
+// } else if (os == 'darwin') {
+//   serverOption['executablePath'] =
+//     '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+// }
 
 create('Init', serverOption).then((client) => {
   console.log('Server Started')
@@ -36,7 +38,7 @@ create('Init', serverOption).then((client) => {
   })
 })
 
-async function msgHandler(client, message) {
+async function msgHandler(client: Client, message: Message) {
   try {
     const time = moment(message.t * 100).format('DD/MM HH:mm:ss')
     const commands = ['#menu', '#help', '#sticker', '#stiker']
@@ -100,7 +102,7 @@ async function msgHandler(client, message) {
                 .sendStickerfromUrl(message.from, url, {
                   method: 'get',
                 })
-                .catch((err) => console.log('Caught exception: ', err))
+                .catch((err: String) => console.log('Caught exception: ', err))
             } else {
               client.sendText(
                 message.from,
@@ -138,7 +140,7 @@ async function msgHandler(client, message) {
   }
 }
 
-function color(text: String, color: String) {
+function color(text: String, color: String | null) {
   switch (color) {
     case 'red':
       return '\x1b[31m' + text + '\x1b[0m'

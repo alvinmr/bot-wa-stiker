@@ -4,12 +4,14 @@
   "description": "Bot sticker wa yang merubah foto menjadi sticker",
   "main": "index.ts",
   "scripts": {
-    "start": "tsc index.ts && node index.js"
+    "start": "ts-node src/index.ts"
   },
   "author": "Alvin",
   "license": "ISC",
   "dependencies": {
     "@open-wa/wa-automate": "^1.9.105",
-    "moment": "^2.27.0"
+    "moment": "^2.27.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
   }
 }
