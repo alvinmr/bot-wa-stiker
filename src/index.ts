@@ -47,8 +47,8 @@ async function msgHandler(client: Client, message: Message) {
       message.type === 'chat'
         ? message.body.match(new RegExp(cmds, 'gi'))
         : message.type == 'image' && message.caption
-        ? message.caption.match(new RegExp(cmds, 'gi'))
-        : null
+          ? message.caption.match(new RegExp(cmds, 'gi'))
+          : null
 
     if (cmd) {
       if (!message.isGroupMsg)
@@ -87,13 +87,13 @@ async function msgHandler(client: Client, message: Message) {
             const mediaData = await decryptMedia(message)
             const imageBase64 = `data:${
               message.mimetype
-            };base64,${mediaData.toString('base64')}`
+              };base64,${mediaData.toString('base64')}`
             await client.sendImageAsSticker(message.from, imageBase64)
           } else if (message.quotedMsg && message.quotedMsg.type == 'image') {
             const mediaData = await decryptMedia(message)
             const imageBase64 = `data:${
               message.mimetype
-            };base64,${mediaData.toString('base64')}`
+              };base64,${mediaData.toString('base64')}`
             await client.sendImageAsSticker(message.from, imageBase64)
           } else if (args.length == 2) {
             const url = args[1]
