@@ -40,7 +40,7 @@ create('Init', serverOption).then((client) => {
 
 async function msgHandler(client: Client, message: Message) {
   try {
-    const time = moment(message.t * 100).format('DD/MM HH:mm:ss')
+    const time = moment(message.t).format('DD/MM HH:mm:ss')
     const commands = ['#menu', '#help', '#sticker', '#stiker']
     const cmds = commands.map((x) => x + '\\b').join('|')
     const cmd =
