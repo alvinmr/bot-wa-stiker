@@ -1,5 +1,5 @@
 Just run it with
-
 ```
-npm start
+$ npm i
+$ npm start
 ```
